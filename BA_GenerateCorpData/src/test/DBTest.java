@@ -1,25 +1,41 @@
 package test;
 
 public class DBTest {
-
-	static {
-		try {
-			System.out.println("Treiber wird geladen...");
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		}
-		catch (Exception e) {
-			System.out.println("Fehler beim Laden des Treibers..");
-			e.printStackTrace();
-			System.exit(0);;
-		}
-		System.out.println("Treiber erfolgreich geladen.");
-		
-	}
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		System.out.println("Verbindungstest: ");
+		System.out.println("_______________________________________________________________________");
+		runVerbindungstest();
+		System.out.println("_______________________________________________________________________");
+		System.out.println("");
+		System.out.println("_______________________________________________________________________");
+		System.out.println("Statement Test: ");
+		System.out.println("_______________________________________________________________________");
+		runTesteStatement();
+		
+		
 	}
-
+	
+	public static void runVerbindungstest() {
+		
+		Database db = new Database();
+		
+		db.erstelleVerbindung();
+		db.schließeVerbindung();
+		
+	}
+	
+	public static void runTesteStatement() {
+		
+		Database db = new Database();
+		
+		db.erstelleVerbindung();
+		db.erstelleStudentTabelle();
+		db.löscheStudentTabelle();
+		db.schließeVerbindung();
+	}
+	
 }
